@@ -6,6 +6,8 @@
   "type": "commonjs",
   "scripts": {
     "start": "node server.js",
+    "start:dfrotz": "node server-dfrotz.js",
+    "start:frotz": "node server-dfrotz.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [

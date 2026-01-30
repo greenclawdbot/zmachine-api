@@ -1,6 +1,6 @@
 # Z-Machine API Server
 
-A REST API for playing Z-machine interactive fiction games (like Zork, Hitchhiker's Guide, etc.). Uses the **ebozz** Z-machine interpreter to run actual game bytecode.
+A REST API for playing Z-machine interactive fiction games (like Zork, Hitchhiker's Guide, etc.). Uses **dfrotz** as the Z-machine interpreter to run actual game bytecode.
 
 ## Installation
 
@@ -9,15 +9,33 @@ cd ~/GitHub/zmachine-api
 npm install
 ```
 
+## Prerequisites
+
+**dfrotz** must be installed for the real Z-machine interpreter:
+
+```bash
+brew install frotz  # macOS
+```
+
 ## Usage
 
-### Start the server
+### Start the server (with real Z-machine)
+
+```bash
+npm run start:dfrotz
+# or
+npm run start:frotz
+```
+
+The server runs on port 3000 by default. Set `PORT` environment variable to change.
+
+### Legacy simplified server (no dfrotz required)
 
 ```bash
 npm start
 ```
 
-The server runs on port 3000 by default. Set `PORT` environment variable to change.
+> Note: The legacy server uses a simplified text engine and doesn't run real Z-code.
 
 ### Add game files
 
@@ -198,16 +216,16 @@ You are carrying:
 
 ## Status
 
-- ✅ Loads and parses Z-machine game files (V1-V6)
-- ✅ Runs actual Z-code bytecode
-- ✅ Session management
-- ⚠️ Input handling needs debugging
+- ✅ **dfrotz integration** - Runs actual Z-code bytecode (V1-V6)
+- ✅ Full Zork I support with real game logic
+- ✅ Session isolation (each session is a subprocess)
+- ✅ Works with CLI client and Discord bot integration
 
 ## Notes
 
-- The Z-machine interpreter (ebozz) is still in alpha
-- Some games may have compatibility issues
-- Input handling is being refined
+- Requires `frotz` (dfrotz) installed via Homebrew
+- Each game session runs as an isolated subprocess
+- Games are stored in the `games/` directory
 
 ## License
 

@@ -125,8 +125,76 @@ This API is designed to be frontend-agnostic. You can build:
 
 - **Discord bot** → POST commands to the API, display output in chat
 - **Web interface** → Use WebSockets for real-time play
-- **CLI** → Simple bash wrapper around curl
+- **CLI** → Interactive command-line client (see below)
 - **Mobile app** → React Native, Flutter, etc.
+
+## CLI Client
+
+A command-line client is included for easy testing and interactive play.
+
+### Usage
+
+```bash
+# Start the CLI (requires server running)
+node cli-client.js
+
+# Specify custom server
+node cli-client.js --server http://localhost:8080
+
+# Specify game file
+node cli-client.js --game /games/zork1.zip
+```
+
+### CLI Commands
+
+Once running, you can type commands directly:
+
+- `look` or `l` - Look around
+- `go north` or `n` - Move north
+- `open mailbox` - Open objects
+- `take brochure` - Pick up items
+- `inventory` or `i` - Check inventory
+- `help` or `?` - Show CLI help
+- `quit` or `exit` - Exit the CLI
+
+### Features
+
+- **Interactive mode** with `>` prompt
+- **Command history** (use arrow keys)
+- **Auto-session management** (creates and cleans up sessions)
+- **Error handling** with reconnection
+- **Clean output** formatting
+
+### Environment Variables
+
+- `ZMACHINE_SERVER` - Default server URL
+- `ZMACHINE_GAME` - Default game path
+
+### Example Session
+
+```bash
+$ node cli-client.js
+
+ZORK I: The Great Underground Empire
+Infocom interactive fiction - a fantasy story
+Copyright (c) 1981, 1982, 1983, 1984, 1985, 1986 Infocom, Inc. All Rights Reserved.
+
+Release 119 / Serial number 880429
+
+West of House
+You are standing in an open field west of a white house, with a boarded front door.
+There is a small mailbox here.
+
+Type "help" for commands or "quit" to exit.
+> open mailbox
+You open the mailbox. Inside, you see a brochure.
+> take brochure
+Taken.
+> inventory
+You are carrying:
+  brochure
+> quit
+```
 
 ## Status
 
